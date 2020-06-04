@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <script src="/static/vendor/vue/vue.js"></script>
+    <link rel="stylesheet" href="/static/vendor/element-ui/index.css" />
+    <script src="/static/vendor/element-ui/index.js"></script>
+    <link rel="stylesheet" href="/static/assets/css/index.css" />
+    <!-- <link rel="stylesheet" type="text/less" href="/static/assets/css/index.less" />
+    <script src="/static/vendor/less/less.min.js"></script> -->
+</head>
+<body>
+    <div id="app">
+        <el-container class="home-container">
+            <!-- 头部区域 -->
+            <el-header style="height: 46px;">
+              <div>
+                <div>
+                  <img src="/static/assets/images/avatar.jpg" alt="享购广告数据监控系统" />
+                </div>
+                <span>享购广告数据监控面板</span>
+              </div>
+              <el-button size="mini" type="primary" @click="logout()">退出</el-button>
+            </el-header>
+            <!--页面主体区域-->
+            <el-container>
+              <!--侧边栏-->
+              <!-- 右侧内容主体 -->
+              <el-main>
+                  <div type="flex" justify="center">
+                  <el-button size="mini" icon="el-icon-circle-plus-outline" @click="showform = true">新建项目</el-button>
+                  <el-button v-show="Timing" type="info" icon="el-icon-video-play" size="mini" @click="TimingF" circle></el-button>
+                  <el-button v-show="!Timing" type="success" icon="el-icon-video-pause" size="mini" @click="TimingF" circle></el-button>
+                  </div>
+                  <div>
+                      当前项目：
+                  <el-select v-model="ckprojectid" placeholder="选择项目">
+                      <el-option
+                              v-for="item in projectlist"
+                              :key="item.id"
+                              :label="item.name"
+                              :value="item.id"
+                      ></el-option>
+                  </el-select>
+                  </div>
+                  <div>
+                      <ul>
+                          <li>当前Status:
+                                  <el-switch v-model="projectStatus" @change="mdfProjectStatus"></el-switch>
+                          </li>
+                      </ul>
+                      <ul v-if="campaigns.length">
+                          <li v-for="campaign in campaigns">当前Campaign:【{{ campaign.campaignid }}】</li>
+                      </ul>
+                      <p v-else>No Campaign.</p>
+                      <ul v-if="lines !== {}">
+                          <li v-for="(lineid,linename) in lines">当前line:【{{ linename }}-{{lineid}}】</li>
+                      </ul>
+                      <p v-else>No line.</p>
+                  </div>
+                  <section class="data-section">
+                      <div>
+                          <div>
+                              <span><small>当日:</small></span>
+                          </div>
+                          <div>
+                              <span class="cnyspan">{{todaySpend}}</span><br>
+                              消耗
+                          </div>
+                          <div>
+                              <span class="cvspan">{{todayFans}}</span><br>
+                              加粉
+                          </div>
+                          <div>
+                              <span class="cpaspan">{{todayCpa}}</span><br>
+                              成本
+                          </div>
+                      </div>
+                      <!-- <div>
+                         <div>
+                           <span><small>当月:</small></span>
+                         </div>
+                         <div>
+                           <span class="cnyspan">18000</span><br>
+                           消耗
+                         </div>
+                         <div>
+                           <span class="cvspan">180</span><br>
+                           加粉
+                         </div>
+                         <div>
+                           <span class="cpaspan">100</span><br>
+                           成本
+                         </div>
+                       </div>-->
+                  </section>
+                  <ve-line :data="chartData" :extend="chartSettings" :settings="chartSettings" :ckprojectid="ckprojectid" >
+                  </ve-line>
+              </el-main>
+            </el-container>
+          </el-container>
+        <el-collapse-transition>
+        <el-form v-show="showform" ref="form1" :rules="form1FormRules" :model="newprojectform" label-width="80px" :label-position="'top'">
+            <el-form-item label="项目名称" prop="projectname">
+                <el-input v-model="newprojectform.projectname"></el-input>
+            </el-form-item>
+            <el-form-item label="所属账号" prop="AccountID">
+                <el-input v-model="newprojectform.AccountID"></el-input>
+            </el-form-item>
+            <el-form-item label="活动ID" prop="CampaignId">
+                <el-input v-model="newprojectform.CampaignId"></el-input>
+            </el-form-item>
+            <el-form-item label="名字" prop="linename">
+                <el-input v-model="newprojectform.linename"></el-input>
+            </el-form-item>
+            <el-form-item label="Line账号" prop="lineid">
+                <el-input v-model="newprojectform.lineid"></el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="primary" @click="addproject">立即创建</el-button>
+                <el-button @click="formcancel">取消</el-button>
+            </el-form-item>
+        </el-form>
+        </el-collapse-transition>
+    </div>
+
+    <!--<div id="myvcharts" style="max-width:1200px;margin: auto;">
+      <ve-line :data="chartData" :extend="chartSettings" :settings="chartSettings" :ckprojectid="ckprojectid" >
+      </ve-line>
+    </div>-->
+    <script src="/static/vendor/axios/axios.min.js"></script>
+    <script src="/static/vendor/echarts/echarts.min.js"></script>
+    <!-- <script src="/static/plugins/echarts.js"></script> -->
+    <script src="/static/vendor/moment/moment.js"></script>
+    <script src="/static/vendor/vcharts/vcharts.min.js"></script>
+    <link rel="stylesheet" href="/static/vendor/vcharts/vcharts.min.css">
+    <script src="/static/assets/js/index.js"></script>
+    <!--<script src="/static/plugins/vcharts.js"></script>-->
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "total_click": 5305,
+  "total_imp": 1035125,
+  "click_rate": "0.51",
+  "total_conversion": 0,
+  "conversion_rate": "0.00",
+  "total_charge": "2,312,805.00",
+  "cpa": 0,
+  "video_imp": 0,
+  "video_imp_100": 0,
+  "video_imp_100_rate": "0.00",
+  "video_click": 0,
+  "video_click_rate": "0.00",
+  "video_conversion": 0,
+  "video_conversion_rate": 0,
+  "video_charge": 0,
+  "total_microconversion": 0,
+  "microconversion_rate": "0.00",
+  "_id": {
+    "$oid": "5dad1b0a0fc10c4b55105654"
+  },
+  "today_charge": "15,915.00",
+  "today_video_charge": "0.00",
+  "total_video_charge": "0.00"
+}

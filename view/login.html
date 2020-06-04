@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN</title>
+    <script src="/static/vendor/vue/vue.js"></script>
+    <link rel="stylesheet" href="/static/vendor/element-ui/index.css" />
+    <script src="/static/vendor/element-ui/index.js"></script>
+    <link rel="stylesheet" href="/static/assets/css/login.css" />
+    <!-- <link rel="stylesheet" type="text/less" href="./assets/css/login.less" />
+    <script src="vendor/less/less.min.js"></script> -->
+</head>
+
+<body>
+    <div class="login_container" id="login">
+        <div class="login_box">
+            <div class="avatar_box">
+                <img src="/static/assets/images/avatar.jpg" />
+            </div>
+            <el-form :model="loginForm" :rules="loginFormRules" ref="loginFormRef" label-width="0px" class="login_form">
+                <!--用户名-->
+                <el-form-item prop="username">
+                    <el-input v-model="loginForm.username" prefix-icon="el-icon-user" placeholder="请输入账号"></el-input>
+                </el-form-item>
+                <!--密码-->
+                <el-form-item prop="password">
+                    <el-input v-model="loginForm.password" prefix-icon="el-icon-lock" placeholder="请输入密码" show-password>
+                    </el-input>
+                </el-form-item>
+                <!--按钮-->
+                <el-form-item class="btns">
+                    <el-button type="primary" @click="submitLoginForm()">登录</el-button>
+                    <el-button type="info" @click="resetLoginForm()">重置</el-button>
+                </el-form-item>
+            </el-form>
+        </div>
+    </div>
+    <script src="/static/vendor/axios/axios.min.js"></script>
+    <script src="/static/assets/js/login.js"></script>
+</body>
+
+</html>
