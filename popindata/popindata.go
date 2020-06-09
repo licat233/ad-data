@@ -209,8 +209,8 @@ func (mgoPopin *MgoPopin) GetCampaignID(cookie, accountID string) []string {
 func GetPopinCookie()(cookie string) {
 	requrl := "https://dashboard.popin.cc/discovery/accounts-tw/index.php"
 	data := make(url.Values)
-	data["userid"] = []string{"Self_White"}
-	data["password"] = []string{"Self_White_..."}
+	data["userid"] = []string{"pop_account"}
+	data["password"] = []string{"pop_password"}
 	data["autoLoginEnable"] = []string{"on"}
 	res, err := http.PostForm(requrl, data)
 	//设置http中header参数，可以再此添加cookie等值
