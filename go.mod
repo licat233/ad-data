@@ -7,7 +7,7 @@ require (
 	github.com/andybalholm/cascadia v1.2.0
 	github.com/gin-contrib/sessions v0.0.4-0.20200226145738-e868e2f1060a
 	github.com/gin-contrib/sse v0.1.1-0.20190905051334-43f0f29dbd2b
-	github.com/gin-gonic/gin v1.6.2-0.20200324144934-bd5ee1aae2e3
+	github.com/gin-gonic/gin v1.7.7
 	github.com/golang/protobuf v1.3.5
 	github.com/gorilla/context v1.1.2-0.20190627024605-8559d4a6b87e
 	github.com/gorilla/securecookie v1.1.2-0.20191028042304-61b4ad17eb88
